@@ -15,8 +15,6 @@ const Weather = () => {
   
   const brazilianCities = ["Presidente Bernardes, Sao Paulo","Sao Paulo", "Rio de Janeiro", "Belo Horizonte", "Salvador", "Fortaleza", "Curitiba", "Manaus", "Recife", "Goiania", "Belem", "Porto Alegre"];
 
-  // ✅ Otimização 1: Usando useCallback
-  // A função handleFetchWeather só será recriada se a variável 'city' mudar.
   const handleFetchWeather = useCallback(async () => {
     if (!city) {
       setError('Por favor, selecione uma cidade.');
@@ -34,20 +32,15 @@ const Weather = () => {
     } finally {
       setLoading(false);
     }
-  }, [city]); // Dependência: a função depende da cidade selecionada
+  }, [city]); 
 
-  // ✅ Bônus: Carrega os dados da cidade padrão na primeira vez que a página abre
   useEffect(() => {
     handleFetchWeather();
-    // A linha abaixo desabilita um aviso do linter. 
-    // Queremos que isso rode APENAS UMA VEZ, na montagem inicial.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
 
-  // ✅ Otimização 2: Usando useMemo
-  // O objeto com os dados do gráfico só será recalculado se 'weatherData' mudar.
   const chartData = useMemo(() => {
-    if (!weatherData) return { labels: [], datasets: [] }; // Retorna um objeto vazio inicial
+    if (!weatherData) return { labels: [], datasets: [] };
 
     const hourlyForecast = weatherData.forecast.forecastday[0].hour;
     return {
@@ -59,7 +52,7 @@ const Weather = () => {
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
       }],
     };
-  }, [weatherData]); // Dependência: os dados do gráfico dependem dos dados do clima
+  }, [weatherData]);
 
   return (
     <div>
@@ -89,7 +82,6 @@ const Weather = () => {
           <hr />
           <h4>Localização no Mapa (Leaflet)</h4>
           <MapContainer 
-            // A key força o Leaflet a recriar o mapa quando a cidade muda, corrigindo um bug comum de centralização
             key={weatherData.location.name}
             center={[weatherData.location.lat, weatherData.location.lon]} 
             zoom={13} 
