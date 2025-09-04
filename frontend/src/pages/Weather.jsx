@@ -1,4 +1,3 @@
-// src/pages/Weather.jsx
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import api from '../services/api';
 import { Line } from 'react-chartjs-2';
@@ -77,7 +76,6 @@ const Weather = () => {
           </div>
           <hr />
           <h4>Variação de Temperatura ao Longo do Dia (Chart.js)</h4>
-          {/* Agora passamos o objeto memorizado 'chartData' */}
           <Line options={{ responsive: true }} data={chartData} />
           <hr />
           <h4>Localização no Mapa (Leaflet)</h4>

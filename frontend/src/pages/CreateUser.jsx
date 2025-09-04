@@ -1,4 +1,3 @@
-// src/pages/CreateUser.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
@@ -20,12 +19,9 @@ const CreateUser = () => {
       navigate('/');
     } catch (err) {
       console.error("Erro ao cadastrar:", err);
-      // <-- MUDANÇA: Tratamento de erro mais robusto
       if (err.response) {
-        // Erro vindo da API (ex: email duplicado)
         setError(err.response.data.error || 'Ocorreu um erro na validação dos dados.');
       } else {
-        // Erro de conexão (backend fora do ar)
         setError('Erro de conexão. Verifique se o servidor backend está rodando.');
       }
     } finally {
