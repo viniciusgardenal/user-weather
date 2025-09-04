@@ -31,7 +31,6 @@ Thumbs.db
 # # # FRONTEND (React / Create React App) # # #
 
 # Pasta de dependências do frontend
-/backend/node_modules/
 /frontend/node_modules/
 
 # Arquivo de ambiente do frontend (MUITO IMPORTANTE PARA SEGURANÇA)
