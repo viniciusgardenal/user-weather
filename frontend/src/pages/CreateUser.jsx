@@ -30,23 +30,59 @@ const CreateUser = () => {
   };
 
   return (
+    <div className="p-8 bg-white shadow-md rounded-lg max-w-2xl mx-auto">
+  <h2 className="text-3xl font-bold text-gray-800 mb-6 border-b border-gray-200 pb-4">
+    Cadastrar Novo Usuário
+  </h2>
+  
+  <form onSubmit={handleSubmit} className="space-y-6">
+    {/* Campo Nome */}
     <div>
-      <h2>Cadastrar Novo Usuário</h2>
-      <form onSubmit={handleSubmit} className="user-form">
-        <div className="form-group">
-          <label htmlFor="name">Nome:</label>
-          <input id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email:</label>
-          <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
-        {error && <p className="error">{error}</p>}
-        <button type="submit" disabled={loading}>
-          {loading ? 'Cadastrando...' : 'Cadastrar'}
-        </button>
-      </form>
+      <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-700">
+        Nome:
+      </label>
+      <input 
+        id="name" 
+        type="text" 
+        value={name} 
+        onChange={(e) => setName(e.target.value)} 
+        required 
+        className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition"
+      />
     </div>
+    
+    {/* Campo Email */}
+    <div>
+      <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">
+        Email:
+      </label>
+      <input 
+        id="email" 
+        type="email" 
+        value={email} 
+        onChange={(e) => setEmail(e.target.value)} 
+        required 
+        className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition"
+      />
+    </div>
+    
+    {/* Exibição de Erro */}
+    {error && (
+      <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md" role="alert">
+        <p>{error}</p>
+      </div>
+    )}
+    
+    {/* Botão de Envio */}
+    <button 
+      type="submit" 
+      disabled={loading}
+      className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-blue-300 disabled:cursor-not-allowed transition-colors"
+    >
+      {loading ? 'Cadastrando...' : 'Cadastrar'}
+    </button>
+  </form>
+</div>
   );
 };
 
