@@ -46,7 +46,7 @@ module.exports = {
       console.log(`${usersToInsert.length} usuários foram inseridos com sucesso.`);
     }
 
-    console.log('PROCESSO DE SEED CONCLUÍDO! 🎉');
+    console.log('PROCESSO DE SEED CONCLUÍDO!');
   },
 
   async down(queryInterface, Sequelize) {
